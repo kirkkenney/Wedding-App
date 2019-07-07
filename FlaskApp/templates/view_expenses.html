@@ -1,0 +1,31 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+
+    <div class="text-center">
+        <h3>Wedding Expenses</h3>
+        {% if expenses %}
+            <div class="container mt-4">
+                <div class="row row-eq-height">
+                    {% for expense in expenses %}
+                        <div class="col-sm content-section">
+                            <a href="{{ url_for('admin.edit_expense', expense_id=expense.id) }}">
+                                <h5 class="btn-navy mb-4 p-2">
+                                    {{ expense.title }}
+                                </h5>
+                            </a>
+                            <h4> £{{ '%.2f' | format(expense.cost) }} </h4>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        {% else %}
+            <p class="mt-4">Nothing to see here yet ...</p>
+        {% endif %}
+    </div>
+
+    <a href="{{ url_for('admin.add_expenses') }}" class="fixed-bottom">
+        <button class="btn btn-navy m-3 pl-3 pr-3">Add Costs</button>
+    </a>
+
+{% endblock content %}

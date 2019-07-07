@@ -1,0 +1,163 @@
+/*
+COLOURS
+Navy - #1e4885 // rgb(30,72,133)
+Eggplant - #733f75 // rgb(115,63,117)
+Gold - #e1dc99 // rgb(225,220,153)
+
+*/
+
+body {
+  background: #e1dc99;
+  color: #733f75;
+  margin-top: 5rem;
+  padding: 5%;
+  font-family: 'Palanquin', sans-serif;
+}
+
+.wedding-bg {
+  background-color: #733f75;
+}
+
+.btn-navy {
+  background: #1e4885;
+  color: #e1dc99;
+  border: #e1dc99;
+}
+
+.btn-navy:hover {
+  background: #e1dc99;
+  color: #1e4885;
+}
+
+.btn-eggplant {
+  background: #733f75;
+  color: #e1dc99;
+  padding: 2%;
+}
+
+.wedding-border-bottom {
+  border-bottom: solid 1px #733f75;
+}
+
+.wedding-form {
+  border: #733f75;
+}
+
+input:focus {
+  background: #733f75 !important;
+  color: #e1dc99 !important;
+}
+
+.table-navy, .table-eggplant {
+  table-layout: fixed;
+}
+
+.table-navy th {
+  background: #1e4885;
+  color: #e1dc99;
+  width: 33%;
+}
+
+.table-navy td {
+  color: #1e4885;
+  border: solid 1px #1e4885;
+  width: 33%;
+}
+
+.table-eggplant th {
+  background: #733f75;
+  color: #e1dc99;
+  width: 33%;
+}
+
+.table-eggplant td {
+  color: #733f75;
+  border: solid 1px #733f75;
+  width: 33%;
+}
+
+/*.thead-navy {
+  background: #1e4885;
+  color: #e1dc99;
+}
+
+.tbody-navy {
+  color: #1e4885;
+  border: solid 1px #1e4885;
+}*/
+
+.site-header .navbar-nav .nav-link {
+  color: #e1dc99;
+}
+
+.site-header .navbar-nav .nav-link:hover {
+  color: #e1dc99;
+}
+
+.site-header .navbar-nav .nav-link.active {
+  font-weight: 500;
+}
+
+.navbar-brand {
+    color: #e1dc99 !important;
+}
+
+.content-section {
+  background: #e1dc99;
+  padding: 10px 20px;
+  border: 1px solid #733f75;
+  border-radius: 3px;
+  margin-bottom: 20px;
+}
+
+.article-title {
+  color: #444444;
+}
+
+a:hover {
+  text-decoration: none;
+}
+
+a.article-title:hover {
+  color: #428bca;
+  text-decoration: none;
+}
+
+.article-content {
+  white-space: pre-line;
+}
+
+.article-img {
+  height: 65px;
+  width: 65px;
+  margin-right: 16px;
+}
+
+.article-metadata {
+  padding-bottom: 1px;
+  margin-bottom: 4px;
+  border-bottom: 1px solid #e3e3e3
+}
+
+.article-metadata a:hover {
+  color: #333;
+  text-decoration: none;
+}
+
+.article-svg {
+  width: 25px;
+  height: 25px;
+  vertical-align: middle;
+}
+
+.account-img {
+  height: 125px;
+  width: 125px;
+  margin-right: 20px;
+  margin-bottom: 16px;
+}
+
+.account-heading {
+  font-size: 2rem;
+}
+

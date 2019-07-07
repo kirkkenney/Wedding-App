@@ -1,0 +1,81 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+
+    <div class="container">
+        <div class="row row-eq-height text-center">
+            <div class="col-sm content-section m-2">
+                <h5 class="wedding-border-bottom mb-4 pb-2">
+                    Total Guests: {{ day_guests+evening_guests }}
+                </h5>
+                <p>All Day Guests: {{ day_guests }}</p>
+                <p>Evening Guests: {{ evening_guests }} </p>
+                <a href="{{ url_for('admin.view_guests') }}">
+                    <button class="btn btn-navy m-2">View Guests</button>
+                </a>
+                <a href="{{ url_for('admin.add_guests') }}">
+                    <button class="btn btn-navy m-2">Add Guests</button>
+                </a>
+            </div>
+            <div class="col-sm content-section m-2 pb-2">
+                <h5 class="wedding-border-bottom mb-4 pb-2">
+                    Total Cost: £{{ costs['total']['cost'] }}
+                </h5>
+                <table class="text-center m-auto table table-sm table-eggplant">
+                    <thead>
+                        <th>Expense</th>
+                        <th>Cost</th>
+                        <th>Paid</th>
+                        <th>Left</th>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td style="color:#1e4885"><strong>Total</strong></td>
+                            <td style="color:#1e4885"> <strong>{{ '%.2f' | format(costs['total']['cost']) }}</strong> </td>
+                            <td style="color:#1e4885"> <strong>{{ '%.2f' | format(costs['total']['paid']) }}</strong> </td>
+                            <td style="color:#1e4885"> <strong>{{ '%.2f' | format(costs['total']['cost'] - costs['total']['paid']) }}</strong> </td>
+                        </tr>
+                        <tr>
+                            <td>Venue</td>
+                            <td>{{ '%.2f' | format(costs['venue']['cost']) }} </td>
+                            <td> {{ '%.2f' | format(costs['venue']['paid']) }} </td>
+                            <td> {{ '%.2f' | format(costs['venue']['cost'] - costs['venue']['paid']) }} </td>
+                        </tr>
+                        <tr>
+                            <td>Rings</td>
+                            <td> {{ '%.2f' | format(costs['rings']['cost']) }} </td>
+                            <td> {{ '%.2f' | format(costs['rings']['paid']) }} </td>
+                            <td> {{ '%.2f' | format(costs['rings']['cost'] - costs['rings']['paid']) }} </td>
+                        </tr>
+                        <tr>
+                            <td>Clothing</td>
+                            <td>{{ '%.2f' | format(costs['clothing']['cost']) }} </td>
+                            <td> {{ '%.2f' | format(costs['clothing']['paid']) }} </td>
+                            <td> {{ '%.2f' | format(costs['clothing']['cost'] - costs['clothing']['paid']) }} </td>
+                        </tr>
+                        <tr>
+                            <td>Guests</td>
+                            <td> {{ '%.2f' | format(costs['guests']['cost']) }} </td>
+                            <td> 0.00 </td>
+                            <td> {{ '%.2f' | format(costs['guests']['cost']) }} </td>
+                        </tr>
+                        <tr>
+                            <td>Extras</td>
+                            <td> {{ '%.2f' | format(costs['extras']['cost']) }} </td>
+                            <td> {{ '%.2f' | format(costs['extras']['paid']) }} </td>
+                            <td> {{ '%.2f' | format(costs['extras']['cost'] - costs['extras']['paid']) }} </td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <a href="{{ url_for('admin.view_expenses') }}">
+                    <button class="btn btn-navy m-2 mt-4">View Costs</button>
+                </a>
+                <a href="{{ url_for('admin.add_expenses') }}">
+                    <button class="btn btn-navy m-2 mt-4">Add Costs</button>
+                </a>
+            </div>
+        </div>
+    </div>
+
+{% endblock content %}

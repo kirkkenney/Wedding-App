@@ -1,0 +1,143 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+
+    <div class="content-section">
+        <form action="" method="POST" class="wedding-form">
+            {{ form.hidden_tag() }}
+            <fieldset class="form-group">
+                <legend class="wedding-border-bottom mb-4">Add A Guest</legend>
+                <div class="form-group">
+                    {{ form.name.label(class="form-control-label") }}
+
+                    {% if form.name.errors %}
+                        {{ form.name(class="form-control form-control-md is-invalid") }}
+                        <div class="invalid-feedback">
+                            {% for error in form.name.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.name(class="form-control form-control-md") }}
+                    {% endif %}
+                </div>
+
+                <div class="form-group">
+                    {{ form.email.label(class="form-control-label") }}
+
+                    {% if form.email.errors %}
+                        {{ form.email(class="form-control form-control-md is-invalid") }}
+                        <div class="invalid-feedback">
+                            {% for error in form.email.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.email(class="form-control form-control-md") }}
+                    {% endif %}
+                </div>
+
+                <div class="form-group">
+                    {{ form.number.label(class="form-control-label") }}
+
+                    {% if form.number.errors %}
+                        {{ form.number(class="form-control form-control-md is-invalid") }}
+                        <div class="invalid-feedback">
+                            {% for error in form.number.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.number(class="form-control form-control-md") }}
+                    {% endif %}
+                </div>
+
+                <div class="form-group" id="guestsField">
+                    {{ form.additional_guests.label(class="form-control-label") }}
+
+                    {% if form.additional_guests.errors %}
+                        {{ form.additional_guests(class="form-control form-control-md is-invalid") }}
+                        <div class="invalid-feedback">
+                            {% for error in form.additional_guests.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.additional_guests(class="form-control form-control-md") }}
+                    {% endif %}
+                </div>
+
+                <div class="form-group" id="guestsNamesField" style="display: none;">
+                    {{ form.additional_guest_names.label(class="form-control-label") }}
+
+                    {% if form.additional_guest_names.errors %}
+                        {{ form.additional_guest_names(class="form-control form-control-md is-invalid") }}
+                        <div class="invalid-feedback">
+                            {% for error in form.additional_guest_names.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.additional_guest_names(class="form-control form-control-md") }}
+                    {% endif %}
+                </div>
+
+               <div class="form-group">
+                    {{ form.is_attending.label(class="form-control-label") }}
+
+                    {% if form.is_attending.errors %}
+                        {{ form.is_attending(class="form-control form-control-md is-invalid") }}
+                        <div class="invalid-feedback">
+                            {% for error in form.is_attending.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.is_attending(class="form-control form-control-md") }}
+                    {% endif %}
+                </div>
+
+                <div class="form-group">
+                    {{ form.guest_type.label(class="form-control-label") }}
+
+                    {% if form.guest_type.errors %}
+                        {{ form.guest_type(class="form-control form-control-md is-invalid") }}
+                        <div class="invalid-feedback">
+                            {% for error in form.guest_type.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.guest_type(class="form-control form-control-md") }}
+                    {% endif %}
+                </div>
+
+                <div class="form-group">
+                    {{ form.language.label(class="form-control-label") }}
+
+                    {% if form.language.errors %}
+                        {{ form.language(class="form-control form-control-md is-invalid") }}
+                        <div class="invalid-feedback">
+                            {% for error in form.language.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.language(class="form-control form-control-md") }}
+                    {% endif %}
+                </div>
+
+            </fieldset>
+            <div class="form-group">
+                {{ form.submit(class="btn btn-navy") }}
+            </div>
+        </form>
+    </div>
+
+    <a href="{{ url_for('admin.delete_guest', guest_id=guest.id) }}">
+        <button class="btn btn-danger mt-2">Delete</button>
+    </a>
+
+<script src=" {{ url_for('static', filename='js/edit_guest.js') }} " type="text/javascript"></script>
+
+{% endblock content %}

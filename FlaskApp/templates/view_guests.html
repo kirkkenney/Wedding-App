@@ -1,0 +1,166 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+
+        <ul class="nav">
+            <li class="active mr-auto">
+                <a data-toggle="tab" href="#dayGuests" class="btn btn-navy">Day Guests</a>
+            </li>
+            <li class="ml-auto">
+                <a data-toggle="tab" href="#eveningGuests" class="btn btn-navy">Evening Guests</a>
+            </li>
+        </ul>
+        <div class="tab-content content-section text-center">
+            <div id="dayGuests" class="tab-pane fade in active">
+                {% if day_guests %}
+                    <h4 class="mt-2">Day Guests</h4>
+                    <h5 class="mt-2">RSVPed</h5>
+                    <div class="list-group">
+                        {% for guest in day_guests %}
+                            {% if guest.rsvp %}
+                                <a href="{{ url_for('admin.edit_guest', guest_name=guest.name)}}"
+                                class="btn-eggplant">
+                                    <div class="d-flex flex-row">
+                                        <div class="flex-fill">
+                                            {{ guest.name }}
+                                        </div>
+                                        <div class="flex-fill">
+                                            +{{ guest.additional_guests }}
+                                        </div>
+                                        <div class="flex-fill">
+                                            {% if guest.is_attending == 'Yes' %}
+                                                &#10004;
+                                            {% elif guest.is_attending == 'No' %}
+                                                &#10006;
+                                            {% else %}
+                                                &#8264;
+                                            {% endif %}
+                                        </div>
+                                    </div>
+                                </a>
+                            {% endif %}
+                        {% endfor %}
+                    </div>
+                    <h5 class="mt-2">Not RSVPed</h5>
+                    <div class="list-group">
+                        {% for guest in day_guests %}
+                            {% if not guest.rsvp %}
+                                <a href="{{ url_for('admin.edit_guest', guest_name=guest.name)}}"
+                                class="btn-eggplant">
+                                    <div class="d-flex flex-row">
+                                        <div class="flex-fill">
+                                            {{ guest.name }}
+                                        </div>
+                                        <div class="flex-fill">
+                                            +{{ guest.additional_guests }}
+                                        </div>
+                                    </div>
+                                </a>
+                            {% endif %}
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    <h4 class="mt-4">No day guests invited yet ...</h4>
+                {% endif %}
+            </div>
+
+            <div id="eveningGuests" class="tab-pane fade">
+                {% if evening_guests %}
+                    <h4 class="mt-2">Evening Guests</h4>
+                    <h5 class="mt-2">RSVPed</h5>
+                    <div class="list-group">
+                        {% for guest in evening_guests %}
+                            {% if guest.rsvp %}
+                                <a href="{{ url_for('admin.edit_guest', guest_name=guest.name)}}"
+                                class="btn-eggplant">
+                                    <div class="d-flex flex-row">
+                                        <div class="flex-fill">
+                                            {{ guest.name }}
+                                        </div>
+                                        <div class="flex-fill">
+                                            +{{ guest.additional_guests }}
+                                        </div>
+                                        <div class="flex-fill">
+                                            {% if guest.is_attending == 'Yes' %}
+                                                &#10004;
+                                            {% elif guest.is_attending == 'No' %}
+                                                &#10006;
+                                            {% else %}
+                                                &#8264;
+                                            {% endif %}
+                                        </div>
+                                    </div>
+                                </a>
+                            {% endif %}
+                        {% endfor %}
+                    </div>
+                    <h5 class="mt-2">Not RSVPed</h5>
+                    <div class="list-group">
+                        {% for guest in evening_guests %}
+                            {% if not guest.rsvp %}
+                                <a href="{{ url_for('admin.edit_guest', guest_name=guest.name)}}"
+                                class="btn-eggplant">
+                                    <div class="d-flex flex-row">
+                                        <div class="flex-fill">
+                                            {{ guest.name }}
+                                        </div>
+                                        <div class="flex-fill">
+                                            +{{ guest.additional_guests }}
+                                        </div>
+                                    </div>
+                                </a>
+                            {% endif %}
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    <h4 class="mt-4">No evening guests invited yet ...</h4>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+<!--     <div class="container">
+        <div class="row row-eq-height">
+            <div class="col-sm content-section m-2">
+                <h5 class="wedding-border-bottom mb-4 pb-2">
+                    Day Guests:
+                </h5>
+                {% if day_guests %}
+                    <div class="list-group">
+                        {% for guest in day_guests %}
+                            <a href="{{ url_for('admin.edit_guest', guest_name=guest.name)}}"
+                            class="list-group-item">
+                            {{ guest.name }}
+                            {% if guest.additional_guests %}
+                                <span> (+{{ guest.additional_guests }}) </span>
+                            {% endif %}
+                            </a>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    <p>No day guests added yet ...</p>
+                {% endif %}
+            </div>
+
+            <div class="col-sm content-section m-2">
+                <h5 class="wedding-border-bottom mb-4 pb-2">
+                    Evening Guests:
+                </h5>
+                {% if evening_guests %}
+                    {% for guest in evening_guests %}
+                        <p class="mb-2"> <a href="{{ url_for('admin.edit_guest', guest_name=guest.name)}}">{{ guest.name }}</a>:
+                            RSVPed? {{ guest.rsvp }}
+                        </p>
+                    {% endfor %}
+                {% else %}
+                    <p>No evening guests added yet ...</p>
+                {% endif %}
+            </div>
+        </div>
+    </div> -->
+
+    <a href="{{ url_for('admin.add_guests') }}" class="fixed-bottom">
+        <button class="btn btn-navy m-3 pl-3 pr-3">Add Guests</button>
+    </a>
+
+{% endblock content %}

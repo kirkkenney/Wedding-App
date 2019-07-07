@@ -1,0 +1,13 @@
+# ignore virtual env
+venv/
+
+# ignore all pycache
+__pycache__/
+
+# ignore sqlite db
+wedding.db
+
+# ignore misc
+dpendencies.txt
+cmd_user.txt
+twilio.txt

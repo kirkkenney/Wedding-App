@@ -58,3 +58,9 @@ class Tasks(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String, nullable=False)
     content = db.Column(db.Text)
+
+
+class Photos(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    uploaded_by = db.Column(db.String)
+    file_name = db.Column(db.String)

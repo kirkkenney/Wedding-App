@@ -1,0 +1,22 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+
+
+    <div class="text-center">
+        <form action="{{ url_for('main.upload_photo_confirm') }}" method="POST" enctype="multipart/form-data">
+            <input type="button" id="uploadBtn" value="Choose Photo" class="btn btn-navy">
+            <input type="file" name="img_file" id="fileBtn" accept="image/*" required>
+            <input type="submit" name="submit_photo" id="submitPhotoBtn" value="Upload Photo" class="btn btn-navy">
+        </form>
+    </div>
+
+    <div class="text-center h-75 w-100 mt-3">
+        <div id="photoDiv">
+            <img src="" alt="" id="photoPreview">
+        </div>
+    </div>
+
+<script src=" {{ url_for('static', filename='js/upload_photo.js') }} " type="text/javascript"></script>
+
+{% endblock content %}

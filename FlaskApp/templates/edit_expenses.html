@@ -5,6 +5,9 @@
     <div class="content-section">
         <div class="container pt-2">
             <div class="row row-eq-height text-center">
+
+                <!-- START COST OVERVIEW SECTION -->
+
                 <div class="col-sm">
                     <h5 class="wedding-border-bottom pb-2 mb-3">
                         {{ expense.title }}
@@ -29,6 +32,10 @@
                         </tbody>
                     </table>
                 </div>
+
+                <!-- END COST OVERVIEW SECTION -->
+
+                <!-- START UPDATE PAYMENT SECTION -->
 
                 <div class="col-sm">
                     <h5 class="wedding-border-bottom pb-2 mb-3 mt-3">
@@ -55,10 +62,14 @@
                         </div>
                     </form>
                 </div>
+
+                <!-- END UPDATE PAYMENT SECTION -->
             </div>
         </div>
     </div>
 
+
+    <!-- START EDIT COST SECTION -->
 
     <div class="content-section">
         <form action="" method="POST" class="wedding-form">
@@ -131,6 +142,8 @@
             </div>
         </form>
     </div>
+
+    <!-- END EDIT COST SECTION -->
 
     <a href="{{ url_for('admin.delete_expense', expense_id=expense.id) }}">
         <button class="btn btn-danger mt-2">Delete</button>

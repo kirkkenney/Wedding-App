@@ -70,3 +70,11 @@ class UpdatePaymentForm(FlaskForm):
     payment = FloatField('How Much Have You Paid?',
                 validators=[DataRequired()])
     submit = SubmitField('Submit')
+
+
+class MessageGuestsForm(FlaskForm):
+    message = TextAreaField('Message', validators=[DataRequired()])
+    guests = SelectField('Who Should The Message Be Sent To?', validators=[DataRequired()],
+                choices=[('All', 'All'), ('Attending', 'Attending'),
+                        ('Not Attending', 'Not Attending'), ('Unsure', 'Unsure')])
+    submit = SubmitField('Send Message')

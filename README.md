@@ -3,7 +3,7 @@
 This Flask web app is built for the purpose of planning and managing my wedding.
 Architeturally, it is divided into two parts:
 * an admin interface to allow for myself and my partner to manage guests, costs, invitations and any extras.
-* an interface for the wedding guests to have access to information about the wedding, local hotels etc, and additional features for the dat itself.
+* an interface for the wedding guests to have access to information about the wedding, local hotels etc, and additional features for the day itself.
 
 
 ## The project is *currently* a work in progress
@@ -45,11 +45,11 @@ Additionally, the wedding will have Romanian guests, so dynamic language selecti
 ### User-Facing
 
 * Build out the user front-end:
-    * login functionality.
-    * list local hotels (currently undecided whether I should utilise web scraping to achieve this, or hard code the feature).
+    ~~ * login functionality. ~~
+    ~~ * list local hotels (hard-coded). ~~
     * contact form.
     * provide details about the wedding itself - times, venue etc.
-    * photo upload and gallery viewing functionalities (can be added much later)
+    ~~ photo upload and gallery viewing functionalities (can be added much later) ~~
     * Spotify API for song selection (can be added much later)
 
 ### Admin
@@ -57,7 +57,7 @@ Additionally, the wedding will have Romanian guests, so dynamic language selecti
 * Clean up and extend the admin front-end:
     * Better styling
     * Rigorously test all functionalities
-    * Add contact form to allow communication with guests (a number of variables to determine *which* guests receive messages eg by language, whether they are evening/day, those that are unsure of their attendance etc.)
+    ~~ Add contact form to allow communication with guests (a number of variables to determine *which* guests receive messages eg by language, whether they are evening/day, those that are unsure of their attendance etc.) ~~
 
 
 ## Project Workflow

@@ -16,7 +16,10 @@ def login():
         return redirect(url_for('main.home'))
     form = LoginForm()
     if form.validate_on_submit():
-        user = Users.query.filter_by(email=form.email.data).first()
+        if form.email.data:
+            user = Users.query.filter_by(email=form.email.data).first()
+        elif form.number.data:
+            user = Users.query.filter_by(number=form.number.data).first()
         # bcrypt method takes db query and form data as parameters to check
         # if the email provided is in the db, and the password they entered
         # matches the decoded password hash store, log them in
@@ -26,10 +29,12 @@ def login():
             # prompted to login. Below gets their requested page and passes
             # it to below return ternary conditional
             next_page = request.args.get('next')
-            flash('Login was successful!', 'success')
+            flash(f'Hi {current_user.name}!', 'success')
             return redirect(next_page) if next_page else redirect(url_for('main.home'))
         else:
-            flash('Cannot log in with those details. Check your email and password are correct!', 'danger')
+            flash('Cannot log in with those details. Check the details you entered are correct', 'danger')
+    elif request.method == "GET":
+        form.number.data = '+44'
     return render_template('login.html', title='Login', form=form)
 
 

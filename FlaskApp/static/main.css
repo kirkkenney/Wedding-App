@@ -2,12 +2,14 @@
 COLOURS
 Navy - #1e4885 // rgb(30,72,133)
 Eggplant - #733f75 // rgb(115,63,117)
-Gold - #e1dc99 // rgb(225,220,153)
+Gold - #fcf8c0 // rgb(225,220,153)
+
+
 
 */
 
 body {
-  background: #e1dc99;
+  background: #fcf8c0;
   color: #733f75;
   margin-top: 5rem;
   padding: 5%;
@@ -20,18 +22,18 @@ body {
 
 .btn-navy {
   background: #1e4885;
-  color: #e1dc99;
-  border: #e1dc99;
+  color: #fcf8c0;
+  border: #fcf8c0;
 }
 
 .btn-navy:hover {
-  background: #e1dc99;
+  background: #fcf8c0;
   color: #1e4885;
 }
 
 .btn-eggplant {
   background: #733f75;
-  color: #e1dc99;
+  color: #fcf8c0;
   padding: 2%;
 }
 
@@ -39,13 +41,17 @@ body {
   border-bottom: solid 1px #733f75;
 }
 
+.wedding-border-top {
+  border-top: solid 1px #733f75;
+}
+
 .wedding-form {
-  border: #733f75;
+  border: solid 1px #733f75;
 }
 
 input:focus {
   background: #733f75 !important;
-  color: #e1dc99 !important;
+  color: #fcf8c0 !important;
 }
 
 .table-navy, .table-eggplant {
@@ -54,7 +60,7 @@ input:focus {
 
 .table-navy th {
   background: #1e4885;
-  color: #e1dc99;
+  color: #fcf8c0;
   width: 33%;
 }
 
@@ -66,7 +72,7 @@ input:focus {
 
 .table-eggplant th {
   background: #733f75;
-  color: #e1dc99;
+  color: #fcf8c0;
   width: 33%;
 }
 
@@ -76,9 +82,84 @@ input:focus {
   width: 33%;
 }
 
+#photoDiv img {
+  max-width: 100%;
+  height: auto;
+}
+
+#fileBtn {
+  position: absolute;
+  left: -5000%;
+}
+
+#uploadBtn, #submitPhotoBtn {
+  margin: 0 6%;
+}
+
+#submitPhotoBtn {
+  display: none;
+}
+
+.imageTile {
+  width: 30%;
+  height: 100px;
+  background-size: cover;
+  margin: 1%;
+  border: solid 1px #733f75;
+  box-sizing: border-box;
+}
+
+#photoModal {
+  height: 92%;
+  width: 100%;
+  background-color: black;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  z-index: 50;
+  display: none;
+}
+
+#modalPhotoContainer {
+  height: 90%;
+  width: 95%;
+  position: absolute;
+  top: 10%;
+  right: 2.5%;
+}
+
+#modalPhotoContainer img {
+  max-width: 100%;
+  max-height: 100%;
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+  border: solid 1px #733f75;
+}
+
+#modalPhotoControls {
+  width: 95%;
+  margin: 2.5%;
+  padding: 2% 5%;
+  z-index: 99;
+  font-size: 1.2rem;
+}
+
+#nextPhoto, #prevPhoto {
+  font-size: 1.2rem;
+}
+
+.photoControl {
+  /*background-color: #733f75;*/
+  background-color: #fcf8c0;
+  padding: 1% 4%;
+  /*color: #fcf8c0;*/
+  color: #733f75;
+}
+
 /*.thead-navy {
   background: #1e4885;
-  color: #e1dc99;
+  color: #fcf8c0;
 }
 
 .tbody-navy {
@@ -86,12 +167,29 @@ input:focus {
   border: solid 1px #1e4885;
 }*/
 
+@media only screen and (max-width: 768px) {
+#map {
+  width: 100%;
+  height: 768px;
+  max-height: 400px;
+}
+}
+
+@media only screen and (min-width: 768px) {
+#map {
+  width: 100%;
+  height: 500px;
+  max-width: 100%;
+  max-height: 500px;
+}
+}
+
 .site-header .navbar-nav .nav-link {
-  color: #e1dc99;
+  color: rgb(225, 220, 153);
 }
 
 .site-header .navbar-nav .nav-link:hover {
-  color: #e1dc99;
+  color: rgb(225, 220, 153);
 }
 
 .site-header .navbar-nav .nav-link.active {
@@ -99,11 +197,11 @@ input:focus {
 }
 
 .navbar-brand {
-    color: #e1dc99 !important;
+    color: rgb(225, 220, 153) !important;
 }
 
 .content-section {
-  background: #e1dc99;
+  background: #fcf8c0;
   padding: 10px 20px;
   border: 1px solid #733f75;
   border-radius: 3px;

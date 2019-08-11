@@ -2,8 +2,27 @@
 
 {% block content %}
 
-    <p>Until Wedding: {{ countdown.days }} days! </p>
-    <p>You are cordially invited to the wedding of Kirk and Vanela on the 12th of February, 2020.</p>
-    <p>Further info such as the wedding itinerary, local hotels etc can be viewed after logging in.</p>
+<div class="container">
+    <div class="row">
+        <div class="col-sm">
+            <div>
+                <p>Until Wedding: {{ countdown.days }} days! </p>
+                <p>You are cordially invited to the wedding of Kirk and Vanela on the 12th of February, 2020.</p>
+                <p>Further info such as the wedding itinerary, local hotels etc can be viewed after logging in.</p>
+            </div>
+        </div>
+        <div class="col-sm">
+            <div id="mapText" class="m-4">
+            </div>
+            <div id="map" class="border rounded"></div>
+        </div>
+    </div>
+</div>
+
+<div id="script"></div>
+
+
+<script src=" {{ url_for('static', filename='js/map_locations.js') }} " type="text/javascript"></script>
+<script src=" {{ url_for('static', filename='js/map.js') }} " type="text/javascript"></script>
 
 {% endblock content %}

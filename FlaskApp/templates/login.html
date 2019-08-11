@@ -3,10 +3,11 @@
 {% block content %}
 
     <div class="content-section">
-        <form action="" method="POST" class="wedding-form">
+        <form action="" method="POST">
             {{ form.hidden_tag() }}
             <fieldset class="form-group">
-                <legend class="wedding-border-bottom mb-4">Login</legend>
+                <legend class="wedding-border-bottom mb-4">Login with your phone number or email address:</legend>
+
                 <div class="form-group">
                     {{ form.email.label(class="form-control-label") }}
 
@@ -21,6 +22,22 @@
                         {{ form.email(class="form-control form-control-md") }}
                     {% endif %}
                 </div>
+
+                <div class="form-group">
+                    {{ form.number.label(class="form-control-label") }}
+
+                    {% if form.number.errors %}
+                        {{ form.number(class="form-control form-control-md is-invalid") }}
+                        <div class="invalid-feedback">
+                            {% for error in form.number.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.number(class="form-control form-control-md") }}
+                    {% endif %}
+                </div>
+
                 <div class="form-group">
                     {{ form.password.label(class="form-control-label") }}
 
@@ -35,11 +52,13 @@
                         {{ form.password(class="form-control form-control-md") }}
                     {% endif %}
                 </div>
+
                 <div class="form-check">
                     {{ form.remember(class="form-check-input") }}
                     {{ form.remember.label(class="form-check-label") }}
                 </div>
             </fieldset>
+
             <div class="form-group">
                 {{ form.submit(class="btn btn-navy") }}
                 <small class="text-muted ml-2">

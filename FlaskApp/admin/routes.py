@@ -3,7 +3,7 @@ from flask import (Blueprint, render_template, redirect, url_for, flash,
 from flask_login import current_user, login_required
 from FlaskApp.models import Users, Expenses, Tasks
 from FlaskApp.admin.forms import (AddGuestForm, EditGuestForm, AddExpensesForm,
-                                EditExpensesForm, UpdatePaymentForm)
+                                EditExpensesForm, UpdatePaymentForm, MessageGuestsForm)
 from FlaskApp import bcrypt, db, Messaging, mail
 import secrets
 from flask_mail import Message
@@ -24,7 +24,7 @@ admin = Blueprint('admin', __name__)
 #     return redirect(url_for('admin.dashboard'))
 
 
-@admin.route('/send_invitations')
+@admin.route('/send-invitations')
 @login_required
 def send_invitations():
     # page restricted to admins. Redirect is user is not an admin (bride/groom)
@@ -46,7 +46,64 @@ def send_invitations():
             # if all of the above fails, text groom the details
             else:
                 error_sms(guest)
-    return redirect(url_for('admin.dashboard'))
+        flash('Invitations have been sent!', 'success')
+        return redirect(url_for('admin.message_guests'))
+
+
+@admin.route('/message-guests', methods=['POST', 'GET'])
+@login_required
+def message_guests():
+    # page restricted to admins. Redirect is user is not an admin (bride/groom)
+    if current_user.guest_type != 'Admin':
+        return redirect(url_for('main.home'))
+    else:
+        form = MessageGuestsForm()
+        message = form.message.data
+        if form.validate_on_submit():
+            if form.guests.data == 'All':
+                guests = Users.query.all()
+            elif form.guests.data == 'Attending':
+                guests = Users.query.filter_by(is_attending='Yes').all()
+            elif form.guests.data == 'Not attending':
+                guests = Users.query.filter_by(is_attending='No').all()
+            else:
+                guests = Users.query.filter_by(is_attending='Unsure').all()
+            send_message(guests, message)
+            flash('Message sent to guests!', 'success')
+            return redirect(url_for('admin.dashboard'))
+        return render_template('message_guests.html', title="Message Guests",
+            form=form)
+
+
+def send_message(guests, message):
+    for guest in guests:
+        if guest.number:
+            if guest.number.startswith('+44'):
+                message_sms(guest, message)
+        elif guest.email:
+            message_email(guest, message)
+        else:
+            error_sms(guest)
+
+
+def message_sms(guest, message):
+    msg = Messaging.client.messages.create(
+        body=f'''Hi {guest.name}, you've been sent a message about Kirk and Vanela's wedding:
+
+        {message}''',
+        from_=Messaging.from_phone,
+        to=guest.number
+        )
+
+
+def message_email(guest, message):
+    msg = Message("Message From Kirk And Vanela's Wedding",
+                sender='noreply@demo.com',
+                recipients=[guest.email])
+    msg.body = f'''Hi {guest.name}, you've been sent a message about Kirk and Vanela's wedding:
+
+    {message}'''
+    mail.send(msg)
 
 
 def invitation_sms(guest):

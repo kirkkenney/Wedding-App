@@ -1,11 +1,17 @@
 # ignore virtual env
 venv/
 
+# ignore photos folder
+photos/
+
 # ignore all pycache
 __pycache__/
 
 # ignore sqlite db
 wedding.db
+
+# ignore map locations
+map_locations.js
 
 # ignore misc
 dpendencies.txt

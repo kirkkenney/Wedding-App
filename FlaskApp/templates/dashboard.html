@@ -3,7 +3,19 @@
 {% block content %}
 
     <div class="container">
+
+        <div class="text-center mb-4">
+            <a href="{{ url_for('admin.message_guests') }}">
+                <button class="btn btn-navy">
+                    Message Guests
+                </button>
+            </a>
+        </div>
+
         <div class="row row-eq-height text-center">
+
+            <!-- START GUESTS OVERVIEW SECTION -->
+
             <div class="col-sm content-section m-2">
                 <h5 class="wedding-border-bottom mb-4 pb-2">
                     Total Guests: {{ day_guests+evening_guests }}
@@ -17,6 +29,11 @@
                     <button class="btn btn-navy m-2">Add Guests</button>
                 </a>
             </div>
+
+            <!-- END GUESTS OVERVIEW SECTION -->
+
+            <!-- START COSTS OVERVIEW SECTION -->
+
             <div class="col-sm content-section m-2 pb-2">
                 <h5 class="wedding-border-bottom mb-4 pb-2">
                     Total Cost: £{{ costs['total']['cost'] }}
@@ -75,6 +92,7 @@
                     <button class="btn btn-navy m-2 mt-4">Add Costs</button>
                 </a>
             </div>
+            <!-- END COSTS OVERVIEW SECTION -->
         </div>
     </div>
 

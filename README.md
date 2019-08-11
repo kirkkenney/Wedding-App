@@ -44,20 +44,20 @@ Additionally, the wedding will have Romanian guests, so dynamic language selecti
 
 ### User-Facing
 
-* Build out the user front-end:
-    ~~* login functionality. ~~
-    ~~* list local hotels (hard-coded). ~~
-    * contact form.
-    * provide details about the wedding itself - times, venue etc.
-    ~~* photo upload and gallery viewing functionalities (can be added much later) ~~
-    * Spotify API for song selection (can be added much later)
+*  Build out the user front-end:
+    ~~*  login functionality.~~
+    ~~*  list local hotels (hard-coded).~~
+    *  contact form.
+    *  provide details about the wedding itself - times, venue etc.
+    ~~*  photo upload and gallery viewing functionalities (can be added much later)~~
+    *  Spotify API for song selection (can be added much later)
 
 ### Admin
 
-* Clean up and extend the admin front-end:
-    * Better styling
-    * Rigorously test all functionalities
-    ~~* Add contact form to allow communication with guests (a number of variables to determine *which* guests receive messages eg by language, whether they are evening/day, those that are unsure of their attendance etc.) ~~
+*  Clean up and extend the admin front-end:
+    *  Better styling
+    *  Rigorously test all functionalities
+    ~~*  Add contact form to allow communication with guests (a number of variables to determine *which* guests receive messages eg by language, whether they are evening/day, those that are unsure of their attendance etc.)~~
 
 
 ## Project Workflow

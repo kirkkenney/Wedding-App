@@ -1,38 +1,12 @@
 {% extends 'layout.html' %}
-
 {% block content %}
 
-    <h3>Hi {{ guest.name }}, you have been invited for the {{ guest.guest_type }} of Kirk & Vanela's wedding on the 12th of February 2020.</h3>
-    {% if guest.additional_guests %}
-        {% if guest.additional_guest_names %}
-            <p>Additional Guests: {{ guest.additional_guest_names }}</p>
-        {% else %}
-        <p>Additional Guests: {{ guest.additional_guests }}</p>
-        {% endif %}
-    {% endif %}
-    <p>Please complete the below form to let us know if you plan to come.</p>
-
-    <div>
-        <form action="" method="POST" class="wedding-form p-4">
+    <div class="content-section">
+        <form action="" method="POST">
             {{ form.hidden_tag() }}
             <fieldset class="form-group">
-
-               <div class="form-group">
-                    {{ form.is_attending.label(class="form-control-label") }}
-
-                    {% if form.is_attending.errors %}
-                        {{ form.is_attending(class="form-control form-control-md is-invalid") }}
-                        <div class="invalid-feedback">
-                            {% for error in form.is_attending.errors %}
-                                <span>{{ error }}</span>
-                            {% endfor %}
-                        </div>
-                    {% else %}
-                        {{ form.is_attending(class="form-control form-control-md") }}
-                    {% endif %}
-                </div>
-
-               <div class="form-group">
+                <legend class="border-bottom mb-4">Reset Password</legend>
+                <div class="form-group">
                     {{ form.password.label(class="form-control-label") }}
 
                     {% if form.password.errors %}
@@ -46,8 +20,7 @@
                         {{ form.password(class="form-control form-control-md") }}
                     {% endif %}
                 </div>
-
-               <div class="form-group">
+                <div class="form-group">
                     {{ form.confirm_password.label(class="form-control-label") }}
 
                     {% if form.confirm_password.errors %}
@@ -61,10 +34,9 @@
                         {{ form.confirm_password(class="form-control form-control-md") }}
                     {% endif %}
                 </div>
-
             </fieldset>
             <div class="form-group">
-                {{ form.submit(class="btn btn-navy") }}
+                {{ form.submit(class="btn btn-outline-info") }}
             </div>
         </form>
     </div>

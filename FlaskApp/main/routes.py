@@ -22,6 +22,21 @@ def home():
             countdown=countdown)
 
 
+@main.route('/on-the-day')
+def on_the_day():
+    return render_template('on_the_day.html', title="On The Day")
+
+
+@main.route('/gifts')
+def gifts():
+    return render_template('gifts.html', title="Gifts")
+
+
+@main.route('/food-drinks-menu')
+def food_drinks_menu():
+    return render_template('food_menu.html', title="Menu")
+
+
 @main.route('/photos')
 def photos():
     photos = Photos.query.all()

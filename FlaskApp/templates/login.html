@@ -2,26 +2,12 @@
 
 {% block content %}
 
-    <div class="content-section">
+    <div>
         <form action="" method="POST">
             {{ form.hidden_tag() }}
             <fieldset class="form-group">
-                <legend class="wedding-border-bottom mb-4">Login with your phone number or email address:</legend>
+                <legend class="wedding-border-bottom mb-4">Login with your phone number and password:</legend>
 
-                <div class="form-group">
-                    {{ form.email.label(class="form-control-label") }}
-
-                    {% if form.email.errors %}
-                        {{ form.email(class="form-control form-control-md is-invalid") }}
-                        <div class="invalid-feedback">
-                            {% for error in form.email.errors %}
-                                <span>{{ error }}</span>
-                            {% endfor %}
-                        </div>
-                    {% else %}
-                        {{ form.email(class="form-control form-control-md") }}
-                    {% endif %}
-                </div>
 
                 <div class="form-group">
                     {{ form.number.label(class="form-control-label") }}
@@ -62,7 +48,7 @@
             <div class="form-group">
                 {{ form.submit(class="btn btn-navy") }}
                 <small class="text-muted ml-2">
-                    <a href="#">Forgotten Password?</a>
+                    <a href="{{url_for('users.reset_request')}}">Forgotten Password?</a>
                 </small>
             </div>
         </form>

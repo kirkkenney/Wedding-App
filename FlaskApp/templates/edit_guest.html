@@ -2,8 +2,14 @@
 
 {% block content %}
 
-    <div class="content-section">
-        <form action="" method="POST" class="wedding-form">
+    <div class="text-center w-100 mb-4">
+        <a href="{{ url_for('users.invite_guest', guest_name=guest.name) }}">
+            <button class="btn btn-navy p-2">Invite Guest</button>
+        </a>
+    </div>
+
+    <div>
+        <form action="" method="POST" class="wedding-form p-4">
             {{ form.hidden_tag() }}
             <fieldset class="form-group">
                 <legend class="wedding-border-bottom mb-4">Add A Guest</legend>

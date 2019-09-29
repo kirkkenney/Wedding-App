@@ -16,6 +16,10 @@ body {
   font-family: 'Palanquin', sans-serif;
 }
 
+.giftPoem {
+  line-height: 2rem;
+}
+
 .wedding-bg {
   background-color: #733f75;
 }
@@ -156,16 +160,6 @@ input:focus {
   /*color: #fcf8c0;*/
   color: #733f75;
 }
-
-/*.thead-navy {
-  background: #1e4885;
-  color: #fcf8c0;
-}
-
-.tbody-navy {
-  color: #1e4885;
-  border: solid 1px #1e4885;
-}*/
 
 @media only screen and (max-width: 768px) {
 #map {

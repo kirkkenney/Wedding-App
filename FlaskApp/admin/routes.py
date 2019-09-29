@@ -34,15 +34,10 @@ def send_invitations():
         # get all guests details
         guests = Users.query.all()
         for guest in guests:
-            # if the guest has a British mobile phone number stored, send their invitation
+            # if the guest has a mobile phone number stored, send their invitation
             # via text message
-            if guest.number:
-                if guest.number.startswith('+44'):
-                    invitation_sms(guest)
-            # if guest does not have a phone number stored, or their phone number is
-            # not British, send them an email
-            elif guest.email:
-                invitation_email(guest)
+            if guest.number.startswith('+4'):
+                invitation_sms(guest)
             # if all of the above fails, text groom the details
             else:
                 error_sms(guest)
@@ -53,7 +48,7 @@ def send_invitations():
 @admin.route('/message-guests', methods=['POST', 'GET'])
 @login_required
 def message_guests():
-    # page restricted to admins. Redirect is user is not an admin (bride/groom)
+    # page restricted to admins. Redirect if user is not an admin (bride/groom)
     if current_user.guest_type != 'Admin':
         return redirect(url_for('main.home'))
     else:
@@ -78,10 +73,8 @@ def message_guests():
 def send_message(guests, message):
     for guest in guests:
         if guest.number:
-            if guest.number.startswith('+44'):
+            if guest.number.startswith('+4'):
                 message_sms(guest, message)
-        elif guest.email:
-            message_email(guest, message)
         else:
             error_sms(guest)
 
@@ -96,48 +89,25 @@ def message_sms(guest, message):
         )
 
 
-def message_email(guest, message):
-    msg = Message("Message From Kirk And Vanela's Wedding",
-                sender='noreply@demo.com',
-                recipients=[guest.email])
-    msg.body = f'''Hi {guest.name}, you've been sent a message about Kirk and Vanela's wedding:
-
-    {message}'''
-    mail.send(msg)
-
-
 def invitation_sms(guest):
     token = guest.get_reset_token()
     message = Messaging.client.messages.create(
-        body=f'''Hi {guest.name}, you've been invited to Kirk & Vanela's Wedding. \n
-        Please visit the below link to RSVP and find other info about the day. \n
-        Hope to see you then! \n
-        Kirk and Vanela. \n
-        {url_for('users.welcome_page', token=token, _external=True)}''',
+        body=f'''Hi {guest.name}, you've been invited to Kirk & Vanela's Wedding'''
+            +'\nPlease visit the below link to RSVP and find other info about the day.'
+            +'\nHope to see you then!'
+            +'\nKirk and Vanela.'
+            +f'''\n{url_for('users.welcome_page', token=token, _external=True)}''',
         from_=Messaging.from_phone,
         to=guest.number
         )
 
 
-def invitation_email(guest):
-    token = guest.get_reset_token()
-    msg = Message("Kirk and Vanela's Wedding",
-            sender='noreply@demo.com',
-            recipients=[guest.email])
-    msg.body = f'''Hi {guest.name}, you've been invited to Kirk and Vanela's Wedding.
-    Please visit the below link to RSVP and find other info about the day.
-    Hope to see you then!
-    Kirk and Vanela.
-    {url_for('users.welcome_page', token=token, _external=True)}'''
-    mail.send(msg)
-
-
 def error_sms(guest):
     msg = Messaging.client.messages.create(
-        body=f'''{guest.name} was supposed to receive an invitation, but an error occurred.
-        Please check that they have an email address or phone number stored.''',
-        from_=Message.from_phone,
-        to=Message.groom_phone
+        body=f'''{guest.name} was supposed to receive an invitation or a message, but an error occurred.
+        Please check that they have a phone number stored.''',
+        from_=Messaging.from_phone,
+        to=Messaging.groom_phone
         )
 
 
@@ -150,8 +120,18 @@ def dashboard():
     else:
         # get guests from db - count how many are evening guests,
         # and how many are invited for the whole day
-        day_guests = Users.query.filter_by(guest_type='Day').count()
-        evening_guests = Users.query.filter_by(guest_type='Evening').count()
+        day = Users.query.filter_by(guest_type='Day').all()
+        evening = Users.query.filter_by(guest_type='Evening').all()
+        day_guests = 0
+        evening_guests = 0
+        for guest in day:
+            day_guests += 1
+            if guest.additional_guests:
+                day_guests += guest.additional_guests
+        for guest in evening:
+            evening_guests += 1
+            if guest.additional_guests:
+                evening_guests += guest.additional_guests
         # call function to calculate total wedding expenses
         costs = calc_cost()
         return render_template('dashboard.html', title='Dashboard',
@@ -306,6 +286,10 @@ def edit_guest(guest_name):
             guest.additional_guests = int(form.additional_guests.data)
             guest.additional_guest_names = form.additional_guest_names.data
             guest.is_attending = form.is_attending.data
+            if guest.is_attending:
+                guest.rsvp = True
+            else:
+                guest.rsvp = False
             guest.guest_type = form.guest_type.data
             guest.language = form.language.data
             db.session.commit()
@@ -319,6 +303,7 @@ def edit_guest(guest_name):
             form.additional_guest_names.data = guest.additional_guest_names
             form.guest_type.data = guest.guest_type
             form.language.data = guest.language
+            form.is_attending.data = guest.is_attending
         return render_template('edit_guest.html', title='Edit Guest',
                 form=form, guest=guest)
 

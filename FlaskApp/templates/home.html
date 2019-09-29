@@ -6,13 +6,13 @@
     <div class="row">
         <div class="col-sm">
             <div>
-                <p>Until Wedding: {{ countdown.days }} days! </p>
-                <p>You are cordially invited to the wedding of Kirk and Vanela on the 12th of February, 2020.</p>
-                <p>Further info such as the wedding itinerary, local hotels etc can be viewed after logging in.</p>
+                <h3 class="mt-2 mb-4">{{ countdown.days }} days left until our wedding!</h3>
+                <h5 class="mt-4 mb-4">For further details about the day, see <a href="{{url_for('main.on_the_day')}}">On The Day</a></h5>
+                <p>Click the markers on the map for venue location details and local hotels.</p>
             </div>
         </div>
         <div class="col-sm">
-            <div id="mapText" class="m-4">
+            <div id="mapText" class="mt-4 mb-4">
             </div>
             <div id="map" class="border rounded"></div>
         </div>

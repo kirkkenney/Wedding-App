@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Palanquin&display=swap" rel="stylesheet">
     {% if title %}
-        <title>Wedding: {{ title }}</title>
+        <title>Kirk & Vanela's Wedding: {{ title }}</title>
     {% else %}
         <title>Wedding</title>
     {% endif %}
@@ -16,14 +16,16 @@
     <header class="site-header">
       <nav class="navbar navbar-expand-md navbar-dark fixed-top wedding-bg">
         <div class="container">
-            <span class="navbar-brand">Wedding</span>
+            <span class="navbar-brand">Kirk & Vanela's Wedding</span>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggle" aria-controls="navbarToggle" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
           <div class="collapse navbar-collapse" id="navbarToggle">
           <div class="navbar-nav mr-auto">
             <a class="nav-item nav-link" href="{{url_for('main.home')}}">Home</a>
-            <a class="nav-item nav-link" href="{{url_for('main.photos')}}">Photos</a>
+            <a class="nav-item nav-link" href="{{url_for('main.gifts')}}">Gifts</a>
+            <a class="nav-item nav-link" href="{{url_for('main.on_the_day')}}">On The Day</a>
+            <a class="nav-item nav-link" href="{{url_for('main.food_drinks_menu')}}">Food & Drinks</a>
           </div>
             <!-- Navbar Right Side -->
             <div class="navbar-nav">

@@ -50,9 +50,9 @@ Additionally, the wedding will have Romanian guests, so dynamic language selecti
 
     ~~* list local hotels (hard-coded).~~
 
-    * contact form.
+    ~~* contact form.~~ Not necessary as guests can contact us directly.
 
-    * provide details about the wedding itself - times, venue etc.
+    ~~* provide details about the wedding itself - times, venue etc.~~
 
     ~~* photo upload and gallery viewing functionalities (can be added much later)~~
 
